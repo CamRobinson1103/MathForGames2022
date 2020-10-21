@@ -13,6 +13,14 @@ namespace MathForGames
         private static bool _gameOver = false;
         private static Scene[] _scenes;
         private static int _currentSceneIndex;
+        public static int CurrentSceneIndex
+        {
+            get
+            {
+                return _currentSceneIndex;
+            }
+        }
+
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
         //Static function used to set game over without an instance of game.
@@ -24,6 +32,11 @@ namespace MathForGames
         public static Scene GetScene(int index)
         {
             return _scenes[index];
+        }
+
+        public static Scene GetCurrentScene()
+        {
+            return _scenes[_currentSceneIndex];
         }
 
         public static int AddScene(Scene scene)
@@ -92,8 +105,11 @@ namespace MathForGames
             return Console.ReadKey(true).Key;
         }
 
+
+
         public static bool GetKeyDown(int key)
         { return Raylib.IsKeyDown((KeyboardKey)key); }
+
 
         public static bool GetKeyPressed(int key)
         { return Raylib.IsKeyPressed((KeyboardKey)key); }
@@ -125,6 +141,7 @@ namespace MathForGames
             Player player = new Player(0, 1,Color.RED, '@', ConsoleColor.Red);
             scene1.AddActor(player);
             player.Speed = 7; 
+
             scene1.AddActor(actor);
 
             scene2.AddActor(player);
@@ -140,13 +157,11 @@ namespace MathForGames
 
 
         //Called every frame.
-        public void Update()
+        public void Update(float deltaTime)
         {
             if (!_scenes[_currentSceneIndex].Started)
-            {
                 _scenes[_currentSceneIndex].Start();
-            }
-            _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].Update(deltaTime);
         }
 
         //Used to display objects and other info on the screen.
@@ -176,8 +191,8 @@ namespace MathForGames
 
             while(!_gameOver && !Raylib.WindowShouldClose())
             {
-                
-                Update();
+                float deltaTime = Raylib.GetFrameTime();
+                Update(deltaTime);
                 Draw();
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);

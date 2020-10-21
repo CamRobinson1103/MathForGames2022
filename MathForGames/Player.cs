@@ -35,15 +35,17 @@ namespace MathForGames
 
         
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
-
             int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A)) +
-                 Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
+                Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
             int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W)) +
                 Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
             Velocity = Velocity.Normalized * Speed;
+            Velocity = new Vector2(xVelocity, yVelocity);
+
+            base.Update(deltaTime);
         }
            
         

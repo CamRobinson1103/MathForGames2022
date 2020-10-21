@@ -71,6 +71,11 @@ namespace MathLibrary
             _y = y;
         }
 
+        public static float  DotProduct (Vector2 lhs, Vector2 rhs)
+        {
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
+        }
+
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
         {
             return new Vector2(lhs.X + rhs.X, lhs.Y + rhs.Y);
@@ -92,6 +97,8 @@ namespace MathLibrary
             return new Vector2(lhs.X / scalar, lhs.Y / scalar);
             
         }
+
+
     }
     
 }
