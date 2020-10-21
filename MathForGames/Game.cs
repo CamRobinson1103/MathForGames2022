@@ -92,6 +92,13 @@ namespace MathForGames
             return Console.ReadKey(true).Key;
         }
 
+        public static bool GetKeyDown(int key)
+        { return Raylib.IsKeyDown((KeyboardKey)key); }
+
+        public static bool GetKeyPressed(int key)
+        { return Raylib.IsKeyPressed((KeyboardKey)key); }
+
+
         public Game()
         {
             _scenes = new Scene[0];
@@ -117,6 +124,7 @@ namespace MathForGames
             actor.Velocity.X = 1;
             Player player = new Player(0, 1,Color.RED, '@', ConsoleColor.Red);
             scene1.AddActor(player);
+            player.Speed = 7; 
             scene1.AddActor(actor);
 
             scene2.AddActor(player);
@@ -135,8 +143,9 @@ namespace MathForGames
         public void Update()
         {
             if (!_scenes[_currentSceneIndex].Started)
+            {
                 _scenes[_currentSceneIndex].Start();
-
+            }
             _scenes[_currentSceneIndex].Update();
         }
 
@@ -145,7 +154,7 @@ namespace MathForGames
         {
             Raylib.BeginDrawing();
 
-            Raylib.ClearBackground(Color.BLACK);
+            Raylib.ClearBackground(Color.BEIGE);
             Console.Clear();
             _scenes[_currentSceneIndex].Draw();
 
@@ -172,7 +181,6 @@ namespace MathForGames
                 Draw();
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);
-                Thread.Sleep(150);
             }
 
             End();
