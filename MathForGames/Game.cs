@@ -43,7 +43,7 @@ namespace MathForGames
         {
             Scene[] tempArray = new Scene[_scenes.Length + 1];
 
-            for(int i = 0; i < _scenes.Length; i++)
+            for (int i = 0; i < _scenes.Length; i++)
             {
                 tempArray[i] = _scenes[i];
             }
@@ -57,7 +57,7 @@ namespace MathForGames
 
         public static bool RemoveScene(Scene scene)
         {
-            if(scene == null)
+            if (scene == null)
             {
                 return false;
             }
@@ -67,7 +67,7 @@ namespace MathForGames
             Scene[] tempArray = new Scene[_scenes.Length - 1];
 
             int j = 0;
-            for(int i = 0; i < _scenes.Length; i++)
+            for (int i = 0; i < _scenes.Length; i++)
             {
                 if (tempArray[i] != scene)
                 {
@@ -80,7 +80,7 @@ namespace MathForGames
                 }
             }
 
-            if(sceneRemoved)
+            if (sceneRemoved)
                 _scenes = tempArray;
 
             return sceneRemoved;
@@ -91,29 +91,21 @@ namespace MathForGames
             if (index < 0 || index >= _scenes.Length)
                 return;
 
+            if (_scenes[_currentSceneIndex].Started)
+                _scenes[_currentSceneIndex].End();
+
             _currentSceneIndex = index;
         }
 
-        public static ConsoleKey GetNextKey()
+        public static bool GetKeyDown(int key)
         {
-            //If the user hasn't pressed a key return
-            if(!Console.KeyAvailable)
-            {
-                return 0;
-            }
-            //Return the key that was pressed
-            return Console.ReadKey(true).Key;
+            return Raylib.IsKeyDown((KeyboardKey)key);
         }
 
-
-
-        public static bool GetKeyDown(int key)
-        { return Raylib.IsKeyDown((KeyboardKey)key); }
-
-
         public static bool GetKeyPressed(int key)
-        { return Raylib.IsKeyPressed((KeyboardKey)key); }
-
+        {
+            return Raylib.IsKeyPressed((KeyboardKey)key);
+        }
 
         public Game()
         {
@@ -136,15 +128,18 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Creates two actors to add to our scene
-            Actor actor = new Actor(0,0,Color.GREEN,'■',ConsoleColor.Green);
+            Actor actor = new Actor(0, 0, Color.GREEN, '■', ConsoleColor.Green);
             actor.Velocity.X = 1;
-            Player player = new Player(0, 1,Color.RED, '@', ConsoleColor.Red);
-            scene1.AddActor(player);
-            player.Speed = 7; 
 
+            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
+            Player player = new Player(0, 1, Color.BLUE, '@', ConsoleColor.Red);
+            scene1.AddActor(player);
             scene1.AddActor(actor);
+            scene1.AddActor(enemy);
+            enemy.Target = player;
 
             scene2.AddActor(player);
+            player.Speed = 7;
 
             int startingSceneIndex = 0;
 
@@ -161,6 +156,7 @@ namespace MathForGames
         {
             if (!_scenes[_currentSceneIndex].Started)
                 _scenes[_currentSceneIndex].Start();
+
             _scenes[_currentSceneIndex].Update(deltaTime);
         }
 
@@ -169,7 +165,7 @@ namespace MathForGames
         {
             Raylib.BeginDrawing();
 
-            Raylib.ClearBackground(Color.BEIGE);
+            Raylib.ClearBackground(Color.BLACK);
             Console.Clear();
             _scenes[_currentSceneIndex].Draw();
 
@@ -180,7 +176,8 @@ namespace MathForGames
         //Called when the game ends.
         public void End()
         {
-            _scenes[_currentSceneIndex].End();
+            if (_scenes[_currentSceneIndex].Started)
+                _scenes[_currentSceneIndex].End();
         }
 
 
@@ -189,7 +186,7 @@ namespace MathForGames
         {
             Start();
 
-            while(!_gameOver && !Raylib.WindowShouldClose())
+            while (!_gameOver && !Raylib.WindowShouldClose())
             {
                 float deltaTime = Raylib.GetFrameTime();
                 Update(deltaTime);

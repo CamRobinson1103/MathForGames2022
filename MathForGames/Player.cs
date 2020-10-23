@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Raylib_cs;
+using MathLibrary;
 
 namespace MathForGames
 {
@@ -21,10 +22,11 @@ namespace MathForGames
             }
         }
 
+
         public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
-            
+
         }
 
         public Player(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
@@ -33,21 +35,18 @@ namespace MathForGames
 
         }
 
-        
-
         public override void Update(float deltaTime)
         {
-            int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A)) +
-                Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
-            int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W)) +
-                Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
+            int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A))
+                + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
 
-            Velocity = Velocity.Normalized * Speed;
+            int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
+                + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
+
             Velocity = new Vector2(xVelocity, yVelocity);
+            Velocity = Velocity.Normalized * Speed;
 
             base.Update(deltaTime);
         }
-           
-        
     }
 }

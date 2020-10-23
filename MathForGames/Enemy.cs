@@ -10,7 +10,6 @@ namespace MathForGames
     {
         private Actor _target;
         private Color _alertColor;
-
         public Actor Target
         {
             get { return _target; }
@@ -18,7 +17,7 @@ namespace MathForGames
         }
 
         public Enemy(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
-           : base(x, y, icon, color)
+            : base(x, y, icon, color)
         {
 
         }
@@ -26,18 +25,21 @@ namespace MathForGames
         public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
-            _alertColor = Color.DARKPURPLE;
+            _alertColor = Color.RED;
         }
 
-        public bool CheckTargetInSight()
+        public bool CheckTargetInSight(float maxAngle, float maxDistance)
         {
             if (Target == null)
                 return false;
+            //Find the vector representing the distance bwtween the actor and its target
+            Vector2 direction = Vector2.Normalize(Target.Position - Position);
+            //Gets the magnitude of the distance vector
+            float distance = direction.Magnitude;
+            //Use the inverse cosine to find the angle of the dot product in radians
+            float angle = (float)Math.Acos(Vector2.DotProduct(Forward, direction.Normalized));
 
-            Vector2 directtion = Vector2.Normalize (Position- Target.Position);
-
-
-            if (Vector2.DotProduct(Foward, directtion) == 1)
+            if (angle <= maxAngle && distance <= maxDistance)
                 return true;
 
             return false;
@@ -45,18 +47,15 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-            if(CheckTargetInSight())
+            if (CheckTargetInSight(1.5f, 5))
             {
-                _rayColor = Color.DARKPURPLE;
+                _rayColor = Color.RED;
             }
             else
             {
-                _rayColor = Color.DARKBLUE;
+                _rayColor = Color.BLUE;
             }
-
-
             base.Update(deltaTime);
         }
-
     }
 }
