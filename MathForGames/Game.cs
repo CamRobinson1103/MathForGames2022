@@ -150,7 +150,6 @@ namespace MathForGames
         }
 
 
-
         //Called every frame.
         public void Update(float deltaTime)
         {
