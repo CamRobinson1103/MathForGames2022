@@ -39,7 +39,7 @@ namespace MathLibrary
                 return (float)Math.Sqrt(X * X + Y * Y);
             }
         }
-
+        
         public Vector2 Normalized
         {
             get

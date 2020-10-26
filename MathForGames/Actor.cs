@@ -76,13 +76,6 @@ namespace MathForGames
             _facing = Velocity.Normalized;
         }
 
-        private void UpdateEyesight()
-        {
-            if (_velocity.Magnitude <= 0)
-                return;
-
-            _eyesight = Velocity.Normalized;
-        }
 
         public virtual void Start()
         {

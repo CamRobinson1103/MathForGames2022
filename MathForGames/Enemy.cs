@@ -50,6 +50,7 @@ namespace MathForGames
             if (CheckTargetInSight(1.5f, 5))
             {
                 _rayColor = Color.RED;
+                Target.Position = new Vector2();
             }
             else
             {
