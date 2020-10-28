@@ -15,7 +15,7 @@ namespace MathLibrary
             m31 = 0; m32 = 0; m33 = 1;
         }
 
-        public Matrix3(float m11,float m12, float m13, 
+        public Matrix3(float m11, float m12, float m13, 
                        float m21, float m22, float m23, 
                        float m31, float m32, float m33 )
         {
@@ -70,7 +70,10 @@ namespace MathLibrary
                     lhs.m31 * rhs.m13 + lhs.m32 * rhs.m23 + lhs.m33 * rhs.m33
                 );
         }
-            
 
+        public static implicit operator Matrix3(Vector2 v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
