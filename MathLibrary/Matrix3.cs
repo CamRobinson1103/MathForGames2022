@@ -71,9 +71,6 @@ namespace MathLibrary
                 );
         }
 
-        public static implicit operator Matrix3(Vector2 v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

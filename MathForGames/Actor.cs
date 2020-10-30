@@ -11,6 +11,9 @@ namespace MathForGames
         protected char _icon = ' ';
         protected Vector2 _velocity;
         protected Matrix3 _transform;
+        protected Matrix3 _rotation;
+        protected Matrix3 _translate;
+        protected Matrix3 _scale;
         protected ConsoleColor _color;
         protected Color _rayColor;
         public bool Started { get; private set; }
@@ -21,14 +24,13 @@ namespace MathForGames
             {
                 return new Vector2(_transform.m11, _transform.m21); 
             }
-
             set
             {
                 _transform.m11 = value.X;
                 _transform.m21 = value.Y;
 
             }
-            
+
         }
 
 
@@ -44,6 +46,38 @@ namespace MathForGames
                 _transform.m23 = value.Y;
             }
         }
+
+        public Vector2 Rotation
+        {
+            get
+            {
+                return new Vector2(_rotation.m11, _rotation.m21);
+            }
+            set
+            {
+                _rotation.m12 = value.X * 180.0f;
+                _rotation.m22 = value.Y * 180.0f;
+            }
+
+            
+        }
+
+
+
+        public Vector2 Scale
+        {
+            get
+            {
+                return new Vector2(_scale.m11, _scale.m21);
+            }
+            set
+            {
+                _scale.m11 = value.X;
+                _scale.m21 = value.Y;
+            }
+        }
+        
+
 
         public Vector2 Velocity
         {
@@ -63,6 +97,9 @@ namespace MathForGames
             _rayColor = Color.WHITE;
             _icon = icon;
             _transform = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
+            _rotation = new Matrix3();
+            _scale = new Matrix3();
+            _translate = new Matrix3();
             Position = new Vector2(x, y);
             _velocity = new Vector2();
             _color = color;
@@ -110,8 +147,6 @@ namespace MathForGames
             Console.SetCursorPosition((int)Position.X, (int)Position.Y);
             Console.Write(_icon);
             Console.ForegroundColor = Game.DefaultColor;
-
-
         }
 
         public virtual void End()
