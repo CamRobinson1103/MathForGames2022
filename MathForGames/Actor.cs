@@ -10,10 +10,10 @@ namespace MathForGames
     {
         protected char _icon = ' ';
         protected Vector2 _velocity;
-        protected Matrix3 _transform;
-        protected Matrix3 _rotation;
-        protected Matrix3 _translate;
-        protected Matrix3 _scale;
+        protected Matrix3 _transform = new Matrix3();
+        protected Matrix3 _rotation = new Matrix3();
+        protected Matrix3 _translattion = new Matrix3();
+        protected Matrix3 _scale = new Matrix3();
         protected ConsoleColor _color;
         protected Color _rayColor;
         public bool Started { get; private set; }
@@ -47,34 +47,21 @@ namespace MathForGames
             }
         }
 
-        public Vector2 Rotation
+        public void SetTranslate(Vector2 position)
         {
-            get
-            {
-                return new Vector2(_rotation.m11, _rotation.m21);
-            }
-            set
-            {
-                _rotation.m12 = value.X * 180.0f;
-                _rotation.m22 = value.Y * 180.0f;
-            }
+            
 
             
         }
 
-
-
-        public Vector2 Scale
+        public void SetRotation(float radians)
         {
-            get
-            {
-                return new Vector2(_scale.m11, _scale.m21);
-            }
-            set
-            {
-                _scale.m11 = value.X;
-                _scale.m21 = value.Y;
-            }
+
+        }
+
+        public void SetScale(float x, float y)
+        {
+            
         }
         
 
@@ -97,9 +84,6 @@ namespace MathForGames
             _rayColor = Color.WHITE;
             _icon = icon;
             _transform = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
-            _rotation = new Matrix3();
-            _scale = new Matrix3();
-            _translate = new Matrix3();
             Position = new Vector2(x, y);
             _velocity = new Vector2();
             _color = color;
