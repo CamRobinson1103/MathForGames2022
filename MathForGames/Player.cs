@@ -40,7 +40,6 @@ namespace MathForGames
         {
             int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
-
             int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
@@ -52,7 +51,7 @@ namespace MathForGames
 
         public override void Draw()
         {
-            _sprite.Draw(_transform);
+            _sprite.Draw(_localTransform);
             base.Draw();
         }
     }

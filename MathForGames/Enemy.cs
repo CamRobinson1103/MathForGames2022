@@ -10,6 +10,9 @@ namespace MathForGames
     {
         private Actor _target;
         private Color _alertColor;
+        private Sprite _sprite;
+
+
         public Actor Target
         {
             get { return _target; }
@@ -26,6 +29,7 @@ namespace MathForGames
             : base(x, y, rayColor, icon, color)
         {
             _alertColor = Color.RED;
+            _sprite = new Sprite("Images/enemy.png");
         }
 
         public bool CheckTargetInSight(float maxAngle, float maxDistance)
@@ -33,7 +37,7 @@ namespace MathForGames
             if (Target == null)
                 return false;
             //Find the vector representing the distance bwtween the actor and its target
-            Vector2 direction = Vector2.Normalize(Target.Position - Position);
+            Vector2 direction = Vector2.Normalize(Target.LocalPosition - LocalPosition);
             //Gets the magnitude of the distance vector
             float distance = direction.Magnitude;
             //Use the inverse cosine to find the angle of the dot product in radians
@@ -47,16 +51,21 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-            if (CheckTargetInSight(1.5f, 5))
+            if (CheckTargetInSight(0.5f, 3))
             {
                 _rayColor = Color.RED;
-                Target.Position = new Vector2();
+                Target.LocalPosition = new Vector2();
             }
             else
             {
                 _rayColor = Color.BLUE;
             }
             base.Update(deltaTime);
+        }
+        public override void Draw()
+        {
+            _sprite.Draw(_localTransform);
+            base.Draw();
         }
     }
 }
