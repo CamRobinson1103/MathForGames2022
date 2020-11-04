@@ -136,7 +136,7 @@ namespace MathForGames
             enemy.Target = player;
             player.SetTranslate(new Vector2(10, 10));
             player.SetRotation(1000);
-            player.SetScale(1000,1);
+            player.SetScale(1,1);
 
             scene2.AddActor(player);
             player.Speed = 7;

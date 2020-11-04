@@ -10,8 +10,8 @@ namespace MathForGames
     {
         protected char _icon = ' ';
         protected Vector2 _velocity;
-        protected Matrix3 _localTransform;
-        protected Matrix3 _globalTransform;
+        protected Matrix3 _localTransform = new Matrix3();
+        protected Matrix3 _globalTransform = new Matrix3();
         protected Matrix3 _rotation = new Matrix3();
         protected Matrix3 _translation = new Matrix3();
         protected Matrix3 _scale = new Matrix3();
@@ -35,7 +35,7 @@ namespace MathForGames
         {
             get
             {
-                return new Vector2(_localTransform.m13, _localTransform.m23);
+                return new Vector2(_globalTransform.m13, _globalTransform.m23);
             }
         }
 
@@ -100,8 +100,6 @@ namespace MathForGames
 
 
 
-
-
         public void SetTranslate(Vector2 position)
         {
             _translation.m13 = position.X;
@@ -116,6 +114,13 @@ namespace MathForGames
             _rotation.m22 = (float)(Math.Cos(radians));
         }
 
+       public void UpdateGlobalTransform()
+        {
+            
+        }
+        
+            
+
         public void SetScale(float x, float y)
         {
             _scale.m11 = x;
@@ -128,8 +133,12 @@ namespace MathForGames
 
         }
 
+        private void SceneObject()
+        {
 
-       
+
+        }
+
 
         public Vector2 Velocity
         {
@@ -149,6 +158,7 @@ namespace MathForGames
             _rayColor = Color.WHITE;
             _icon = icon;
             _localTransform = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
+            _globalTransform = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
             LocalPosition = new Vector2(x, y);
             _velocity = new Vector2();
             _color = color;
@@ -172,9 +182,6 @@ namespace MathForGames
             Started = true;
         }
 
-        
-
-
         public virtual void Update(float deltaTime)
         {
             UpdateTransform();
@@ -197,6 +204,8 @@ namespace MathForGames
             Console.SetCursorPosition((int)LocalPosition.X, (int)LocalPosition.Y);
             Console.Write(_icon);
             Console.ForegroundColor = Game.DefaultColor;
+
+
         }
 
         public virtual void End()
