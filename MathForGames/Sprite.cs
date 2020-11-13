@@ -71,6 +71,12 @@ namespace MathForGames
             System.Numerics.Vector2 pos = new System.Numerics.Vector2(transform.m13, transform.m23);
             System.Numerics.Vector2 forward = new System.Numerics.Vector2(transform.m11, transform.m21);
             System.Numerics.Vector2 up = new System.Numerics.Vector2(transform.m12, transform.m22);
+
+            if (pos.X < 0 && pos.Y > 0)
+                pos.X = Math.Abs(pos.X);
+            else if (pos.X > 0 && pos.Y < 0)
+                pos.Y = Math.Abs(pos.Y);
+
             pos -= (forward / forward.Length()) * Width / 2;
             pos -= (up / up.Length()) * Height / 2;
 
@@ -80,6 +86,7 @@ namespace MathForGames
             //Draw the sprite
             Raylib.DrawTextureEx(_texture, pos * 32,
                 (float)(rotation * 180.0f / Math.PI), 32, Color.WHITE);
+
         }
     }
 }
