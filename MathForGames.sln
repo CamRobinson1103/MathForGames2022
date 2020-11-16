@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathLibrary", "MathLibrary\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathForGames3D", "..\..\11112020\MathForGames2022\MathForGames3D\MathForGames3D.csproj", "{A393864A-3A62-4692-85C5-3FDC7AF5F12D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "..\..\11112020\MathForGames2022\UnitTestProject\UnitTestProject.csproj", "{2731BE78-C467-4E92-9381-4F6B9EA68963}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{2731BE78-C467-4E92-9381-4F6B9EA68963}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

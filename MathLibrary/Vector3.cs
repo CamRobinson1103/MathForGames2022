@@ -131,9 +131,9 @@ namespace MathLibrary
             return new Vector3(lhs.X / scalar, lhs.Y / scalar, lhs.Z / scalar);
         }
 
-        public static float CrossProduct(Vector3 lhs, Vector3 rhs)
+        public static Vector3 CrossProduct(Vector3 lhs, Vector3 rhs)
         {
-            return (lhs.Y * rhs.Z - lhs.Z * rhs.Y) * (lhs.Z * rhs.X - lhs.X * rhs.Z) * (lhs.X * rhs.Y - lhs.Y * rhs.X);
+            return new Vector3();
         }
 
 
