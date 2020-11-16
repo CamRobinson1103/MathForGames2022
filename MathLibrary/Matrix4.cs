@@ -40,6 +40,17 @@ namespace MathLibrary
                 );
         }
 
+        public static Matrix4 CreateRotation(float radians)
+        {
+            return new Matrix4(
+                (float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+                -(float)Math.Cos(radians), -(float)Math.Sin(radians),
+                0, 0, 0, 1, -(float)Math.Cos(radians), -(float)Math.Sin(radians),
+                (float)Math.Sin(radians), (float)Math.Cos(radians), 1, 0, 1
+                );
+        }
+
+
         public static Matrix4 CreateRotationX(float radians)
         {
             return new Matrix4(
