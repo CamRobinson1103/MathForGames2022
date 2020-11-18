@@ -122,8 +122,7 @@ namespace MathLibrary
         {
             return new Vector3();
         }
-
     }
 }
-        
-  
+
+
