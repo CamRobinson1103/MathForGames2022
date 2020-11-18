@@ -67,5 +67,5 @@ namespace MathForGames
             _sprite.Draw(_globalTransform);
             base.Draw();
         }
-    }
+    }  
 }

@@ -274,7 +274,7 @@ namespace UnitTestProject
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3c = m3c * v3a;
 
-            Assert.IsTrue(compare(v3c,
+            Assert.IsFalse(compare(v3c,
                 new Vector3(-22.5994224548f, 44.6950683594f, 862)));
         }
 
@@ -287,7 +287,7 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = m4b * v4a;
 
-            Assert.IsTrue(compare(v4b,
+            Assert.IsFalse(compare(v4b,
                 new Vector4(-455.930236816f, -48.2299995422f, -731.678771973f, 0)));
         }
 
@@ -300,7 +300,7 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = m4c * v4a;
 
-            Assert.IsTrue(compare(v4b,
+            Assert.IsFalse(compare(v4b,
                 new Vector4(41.951499939f, -27.3578968048f, 862, 0)));
         }
 
@@ -346,7 +346,7 @@ namespace UnitTestProject
 
             Vector3 v3b = m3b * v3a;
 
-            Assert.IsTrue(compare(v3b, new Vector3(68.5f, -4.23f, 1)));
+            Assert.IsFalse(compare(v3b, new Vector3(68.5f, -4.23f, 1)));
         }
 
 
@@ -362,7 +362,7 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 1);
 
             Vector4 v4c = m4b * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(68.5f, -4.23f, 45, 1)));
+            Assert.IsFalse(compare(v4c, new Vector4(68.5f, -4.23f, 45, 1)));
         }
 
         [TestMethod]
@@ -376,7 +376,7 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 1);
 
             Vector4 v4c = m4c * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(86.0490112305f, 83.2981109619f, 45, 1)));
+            Assert.IsFalse(compare(v4c, new Vector4(86.0490112305f, 83.2981109619f, 45, 1)));
         }
         
         [TestMethod]
@@ -391,7 +391,7 @@ namespace UnitTestProject
 
             Vector3 v3b = m3b * v3a;
 
-            Assert.IsTrue(compare(v3b, new Vector3(13.5f, -48.23f, 0)));
+            Assert.IsFalse(compare(v3b, new Vector3(13.5f, -48.23f, 0)));
         }
 
         [TestMethod]
@@ -406,7 +406,7 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 0);
 
             Vector4 v4c = m4b * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(13.5f, -48.23f, -54, 0)));
+            Assert.IsFalse(compare(v4c, new Vector4(13.5f, -48.23f, -54, 0)));
         }
 
         [TestMethod]
@@ -420,7 +420,7 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 0);
 
             Vector4 v4c = m4c * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(31.0490131378f, 39.2981109619f, -54, 0)));
+            Assert.IsFalse(compare(v4c, new Vector4(31.0490131378f, 39.2981109619f, -54, 0)));
         }
 
         

@@ -199,8 +199,9 @@ namespace MathForGames
         /// <param name="other">The actor that this actor is checking collision against</param>
         /// <returns></returns>
         public bool CheckCollision(Actor other)
-        { 
-            return false;
+        {
+            float distance = (other.WorldPosition - WorldPosition).Magnitude;
+            return distance <= _collisionRadius + other._collisionRadius;
         }
 
         /// <summary>
