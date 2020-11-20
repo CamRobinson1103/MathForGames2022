@@ -16,7 +16,8 @@ namespace MathForGames
     class Actor
     {
         protected char _icon = ' ';
-        protected Vector2 _velocity;
+        private Vector2 _velocity = new Vector2();
+        private Vector2 _acceleration = new Vector2();
         protected Matrix3 _globalTransform = new Matrix3();
         protected Matrix3 _localTransform = new Matrix3();
         protected Matrix3 _translation = new Matrix3();
@@ -27,7 +28,8 @@ namespace MathForGames
         protected Actor _parent;
         protected Actor[] _children = new Actor[0];
         protected float _rotationAngle;
-        private float _collisionRadius;
+        protected float _collisionRadius;
+        private float _maxSpeed = 5;
 
         public bool Started { get; private set; }
 
@@ -76,6 +78,28 @@ namespace MathForGames
                 _velocity = value;
             }
         }
+
+        protected Vector2 Acceleration
+        {
+            get
+            {
+                return _acceleration;
+            }
+            set
+            {
+                _acceleration = value;
+            }
+        }
+
+        public float MaxSpeed
+        {
+            get
+            {
+                return;
+            }
+        }
+        
+
 
 
         /// <param name="x">Position on the x axis</param>
@@ -252,6 +276,11 @@ namespace MathForGames
 
             //Before the actor is moved, update the direction it's facing
             UpdateFacing();
+
+            Velocity += Acceleration;
+
+            if (Velocity.Magnitude > MaxSpeed)
+                Velocity = Velocity.Normalized * MaxSpeed;
 
             //Increase position by the current velocity
             LocalPosition += _velocity * deltaTime;

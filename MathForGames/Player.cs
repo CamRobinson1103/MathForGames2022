@@ -56,9 +56,8 @@ namespace MathForGames
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
             //Set the actors current velocity to be the a vector with the direction found scaled by the speed
-            Velocity = new Vector2(xDirection, yDirection);
-            Velocity = Velocity.Normalized * Speed;
-            
+           Acceleration = new Vector2(xDirection, yDirection);
+           Velocity = Velocity.Normalized * Speed;
             base.Update(deltaTime);
         }
 
