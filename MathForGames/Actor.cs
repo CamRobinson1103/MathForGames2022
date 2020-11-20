@@ -95,7 +95,11 @@ namespace MathForGames
         {
             get
             {
-                return;
+                return; // I'm low key frickin tired of htis. imaa work on this later...
+            }
+            set
+            {
+
             }
         }
         
