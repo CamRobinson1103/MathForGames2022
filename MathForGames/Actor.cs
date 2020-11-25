@@ -91,17 +91,7 @@ namespace MathForGames
             }
         }
 
-        public float MaxSpeed
-        {
-            get
-            {
-                return; // I'm low key frickin tired of htis. imaa work on this later...
-            }
-            set
-            {
-
-            }
-        }
+        
         
 
 
@@ -239,7 +229,10 @@ namespace MathForGames
         /// <param name="other"></param>
         public virtual void OnCollision(Actor other)
         {
-
+            Enemy enemy = other as Enemy;
+            if (enemy == null)
+                Destroy();
+            base.OnCollision(other);
         }
 
         public void SetScale(float x, float y)
@@ -283,8 +276,7 @@ namespace MathForGames
 
             Velocity += Acceleration;
 
-            if (Velocity.Magnitude > MaxSpeed)
-                Velocity = Velocity.Normalized * MaxSpeed;
+            
 
             //Increase position by the current velocity
             LocalPosition += _velocity * deltaTime;

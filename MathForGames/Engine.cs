@@ -184,8 +184,8 @@ namespace MathForGames
 
             //Create the actors to add to our scene
             Goal actor = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
-            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
-            Player player = new Player(0, 1, Color.BLUE, '@', ConsoleColor.Red);
+            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■');
+            Player player = new Player(0, 1, Color.BLUE, '@');
 
             //Sets actors starting values
             enemy.Target = player;
@@ -229,7 +229,7 @@ namespace MathForGames
             Raylib.ClearBackground(Color.BLACK);
             Console.Clear();
             _scenes[_currentSceneIndex].Draw();
-
+         
             Raylib.EndDrawing();
         }
 

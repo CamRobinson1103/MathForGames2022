@@ -13,6 +13,7 @@ namespace MathForGames
     {
         private float _speed = 1;
         private Sprite _sprite;
+        private bool _canMove = true;
 
         public float Speed
         {
@@ -30,8 +31,8 @@ namespace MathForGames
         /// <param name="y">Position on the y axis</param>
         /// <param name="icon">The symbol that will appear when drawn</param>
         /// <param name="color">The color of the symbol that will appear when drawn</param>
-        public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
-            : base(x, y, icon, color)
+        public Player(float x, float y, char icon = ' ')
+            : base(x, y, icon)
         {
             _sprite = new Sprite("Images/player.png");
         }
@@ -41,10 +42,24 @@ namespace MathForGames
         /// <param name="rayColor">The color of the symbol that will appear when drawn to raylib</param>
         /// <param name="icon">The symbol that will appear when drawn</param>
         /// <param name="color">The color of the symbol that will appear when drawn to the console</param>
-        public Player(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
-            : base(x, y, rayColor, icon, color)
+        public Player(float x, float y, Color rayColor, char icon = ' ')
+            : base(x, y, rayColor, icon)
         {
             _sprite = new Sprite("Images/player.png");
+        }
+
+        public override void Start()
+        {
+            GameManager.onWin += DrawWinText;
+            base.Start();
+        }
+
+        public void Sword()
+        {
+            Enemy enemy = new Enemy(WorldPosition.X, WorldPosition.Y);
+            Engine.GetCurrentScene().AddActor(enemy);
+            enemy.Velocity = Forward * _bulletSpeed;
+
         }
 
         public override void Update(float deltaTime)
@@ -55,16 +70,34 @@ namespace MathForGames
             int yDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
+            if (Engine.GetKeyPressed((int)KeyboardKey.KEY_SPACE))
+                Raylib.DrawText("STUPID!!!\nPress Esc to quit", 100, 100, 100, Color.BLUE);
+
+
+
+
+
             //Set the actors current velocity to be the a vector with the direction found scaled by the speed
-           Acceleration = new Vector2(xDirection, yDirection);
+            Acceleration = new Vector2(xDirection, yDirection);
            Velocity = Velocity.Normalized * Speed;
             base.Update(deltaTime);
         }
 
         public override void Draw()
         {
-            _sprite.Draw(_globalTransform);
+
+
+            if(_sprite != null)
+                _sprite.Draw(_globalTransform);
+
             base.Draw();
         }
+
+        private void DrawWinText()
+        {
+            Raylib.DrawText("You Win!!\nPress Esc to quit", 100, 100, 100, Color.BLUE);
+        }
+
+
     }  
 }
