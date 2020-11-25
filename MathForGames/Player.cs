@@ -34,7 +34,7 @@ namespace MathForGames
         public Player(float x, float y, char icon = ' ')
             : base(x, y, icon)
         {
-            _sprite = new Sprite("Images/player.png");
+            _sprite = new Sprite("Images/bullet.png");
         }
 
         /// <param name="x">Position on the x axis</param>
@@ -45,7 +45,7 @@ namespace MathForGames
         public Player(float x, float y, Color rayColor, char icon = ' ')
             : base(x, y, rayColor, icon)
         {
-            _sprite = new Sprite("Images/player.png");
+            _sprite = new Sprite("Images/bullet.png");
         }
 
         public override void Start()
@@ -58,7 +58,7 @@ namespace MathForGames
         {
             Enemy enemy = new Enemy(WorldPosition.X, WorldPosition.Y);
             Engine.GetCurrentScene().AddActor(enemy);
-            enemy.Velocity = Forward * _bulletSpeed;
+           
 
         }
 
@@ -72,6 +72,7 @@ namespace MathForGames
 
             if (Engine.GetKeyPressed((int)KeyboardKey.KEY_SPACE))
                 Raylib.DrawText("STUPID!!!\nPress Esc to quit", 100, 100, 100, Color.BLUE);
+
 
 
 

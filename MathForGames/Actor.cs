@@ -232,7 +232,12 @@ namespace MathForGames
             Enemy enemy = other as Enemy;
             if (enemy == null)
                 Destroy();
-            base.OnCollision(other);
+            
+        }
+
+        private void Destroy()
+        {
+            throw new NotImplementedException();
         }
 
         public void SetScale(float x, float y)
