@@ -192,11 +192,18 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Create the actors to add to our scene
+<<<<<<< HEAD
             Goal actor = new Goal(10,20,Color.GREEN,'■',ConsoleColor.Green);
             Enemy enemy = new Enemy(1,1, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(1,1,Color.BLUE, '@', ConsoleColor.Red);
             Bullet bullet = new Bullet(1, 1, Color.BLUE, '@', ConsoleColor.Red);
 
+=======
+            Actor actor = new Actor(0,0,Color.GREEN,'■',ConsoleColor.Green);
+            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■');
+            Player player = new Player(0, 1,Color.BLUE, '@');
+            actor.Velocity.X = 1;
+>>>>>>> master
             enemy.Target = player;
             player.Speed = 5;
             enemy.SetTranslation(new Vector2(5, 0));
@@ -247,6 +254,8 @@ namespace MathForGames
 
             Raylib.EndDrawing();
         }
+
+        
 
 
         //Called when the game ends.

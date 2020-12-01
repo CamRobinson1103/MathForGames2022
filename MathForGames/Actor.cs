@@ -91,7 +91,11 @@ namespace MathForGames
             }
         }
 
+<<<<<<< HEAD
        
+=======
+        
+>>>>>>> master
         
 
 
@@ -229,7 +233,15 @@ namespace MathForGames
         /// <param name="other"></param>
         public virtual void OnCollision(Actor other)
         {
+            Enemy enemy = other as Enemy;
+            if (enemy == null)
+                Destroy();
+            
+        }
 
+        private void Destroy()
+        {
+            throw new NotImplementedException();
         }
 
         public void SetScale(float x, float y)

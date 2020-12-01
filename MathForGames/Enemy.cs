@@ -30,8 +30,12 @@ namespace MathForGames
         public Enemy(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
+<<<<<<< HEAD
             _sprite = new Sprite("Images/tankBlue_outline.png");
             _collisionRadius = 5;
+=======
+            _sprite = new Sprite("Images/FemalePerson.png");
+>>>>>>> master
         }
 
         /// <param name="x">Position on the x axis</param>
@@ -42,8 +46,13 @@ namespace MathForGames
         public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
+<<<<<<< HEAD
             _sprite = new Sprite("Images/tankBlue_outline.png");
             _collisionRadius = 5;
+=======
+            _sprite = new Sprite("Images/FemalePerson.png");
+            _alertColor = Color.RED;
+>>>>>>> master
         }
 
         /// <summary>
