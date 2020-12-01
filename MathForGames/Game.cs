@@ -192,20 +192,24 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Create the actors to add to our scene
-            Actor actor = new Actor(0,0,Color.GREEN,'■',ConsoleColor.Green);
-            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
-            Player player = new Player(0, 1,Color.BLUE, '@', ConsoleColor.Red);
-            actor.Velocity.X = 1;
+            Goal actor = new Goal(10,20,Color.GREEN,'■',ConsoleColor.Green);
+            Enemy enemy = new Enemy(1,1, Color.GREEN, '■', ConsoleColor.Green);
+            Player player = new Player(1,1,Color.BLUE, '@', ConsoleColor.Red);
+            Bullet bullet = new Bullet(1, 1, Color.BLUE, '@', ConsoleColor.Red);
+
             enemy.Target = player;
-            enemy.SetTranslation(new Vector2(6, 0));
             player.Speed = 5;
-            player.SetTranslation(new Vector2(10, 10));
+            enemy.SetTranslation(new Vector2(5, 0));
+            player.SetTranslation(new Vector2(5, 0));
             player.AddChild(enemy);
+
             //player.SetRotation(1);
-            player.SetScale(1, 6);
+            player.SetScale(1, 1);
+            enemy.SetScale(1, 1);
             //Add actors to the scenes
             scene1.AddActor(player);
             scene1.AddActor(actor);
+            scene1.AddActor(bullet);
             scene1.AddActor(enemy);
             scene2.AddActor(player);
             
@@ -261,7 +265,7 @@ namespace MathForGames
 
 
             //Loops the game until either the game is set to be over or the window closes
-            while(!_gameOver && !Raylib.WindowShouldClose())
+            while(!GameManager.GameOver && !Raylib.WindowShouldClose())
             {
                 //Stores the current time between frames
                 float deltaTime = Raylib.GetFrameTime();

@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Raylib_cs;
 
 namespace MathForGames
 {
+    /// <summary>
+    /// A goal is an actor that checks if the player has collided with it.
+    /// If so the player wins the game.
+    /// </summary>
     class Goal : Actor
     {
         public Goal(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, icon, color)
@@ -50,7 +54,7 @@ namespace MathForGames
 
         private void DrawWinText()
         {
-            Raylib.DrawText("Congladurations!!!\nPress esc to quit", 100, 100, 100, Color.BLUE);
+            Raylib.DrawText("You Win!!\nPress Esc to quit", 100, 100, 100, Color.BLUE);
         }
     }
 }

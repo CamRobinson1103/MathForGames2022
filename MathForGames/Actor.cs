@@ -91,17 +91,7 @@ namespace MathForGames
             }
         }
 
-        public float MaxSpeed
-        {
-            get
-            {
-                return; // I'm low key frickin tired of htis. imaa work on this later...
-            }
-            set
-            {
-
-            }
-        }
+       
         
 
 
@@ -283,8 +273,7 @@ namespace MathForGames
 
             Velocity += Acceleration;
 
-            if (Velocity.Magnitude > MaxSpeed)
-                Velocity = Velocity.Normalized * MaxSpeed;
+            
 
             //Increase position by the current velocity
             LocalPosition += _velocity * deltaTime;
